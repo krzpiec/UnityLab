@@ -6,6 +6,7 @@ public class Witcher : MonoBehaviour,IPlayerFighter
 {
     public int attack = 10;
     public int health = 50;
+    public int maxHealth = 50;
     public int armor = 100;
     public int gold = 1000;
     public int silver = 450;
@@ -48,6 +49,8 @@ public class Witcher : MonoBehaviour,IPlayerFighter
             deathEvent?.Invoke();
         }
     }
+
+  
     public float getPlayerHealth()
     {
         return health;
@@ -73,7 +76,9 @@ public class Witcher : MonoBehaviour,IPlayerFighter
     public void ChangeHealth(int amount)
     {
         health += amount;
-
+        if (health > maxHealth)
+            health = maxHealth;
+        
     }
 
     public void ChangeArmor(int amount)

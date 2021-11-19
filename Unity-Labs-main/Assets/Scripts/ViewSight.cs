@@ -135,6 +135,16 @@ public class ViewSight : MonoBehaviour
         IMonseterFighter monseterFighter = other.GetComponent<IMonseterFighter>();
         INegotitionReciever negotitionReciever = other.GetComponent<INegotitionReciever>();
 
+
+        if(other.gameObject.CompareTag("CapsuleHP") )
+        {
+            this.witcher.ChangeHealth(10);
+            other.gameObject.SetActive(false);
+            return;
+        }
+
+
+
         if (monseterFighter != null)//tutaj przeniesc do sceny walki
         {
             Debug.Log("asd");

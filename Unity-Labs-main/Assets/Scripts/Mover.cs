@@ -12,6 +12,7 @@ public class Mover : MonoBehaviour
     Animator animator;
     public int routeCounter = 0;
     public List<Vector3> route;
+    public ParticleSystem particle;
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
@@ -35,7 +36,12 @@ public class Mover : MonoBehaviour
         }
 
         if (active)
+            
         {
+            if (!particle.isPlaying)
+            {
+                particle.Play();
+            }
             animator.SetBool("isRunning", true);
             transform.position = Vector3.MoveTowards(transform.position, route[routeCounter], speed*Time.deltaTime);
 
@@ -49,6 +55,10 @@ public class Mover : MonoBehaviour
         }
         else
         {
+            if (particle.isPlaying)
+            {
+                particle.Stop();
+            }
             animator.SetBool("isRunning", false) ;
             rigbod.velocity = Vector3.zero;
         }
